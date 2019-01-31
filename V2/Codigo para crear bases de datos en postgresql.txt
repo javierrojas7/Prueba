@@ -1,0 +1,37 @@
+CREATE TABLE public.autor
+(
+  cautor numeric NOT NULL,
+  nombre text,
+  apellido text,
+  CONSTRAINT cautor PRIMARY KEY (cautor)
+)
+
+
+
+
+CREATE TABLE public."Categoria"
+(
+  "Ccategoria" numeric NOT NULL,
+  "Tipo" text,
+  CONSTRAINT "Ccategoria" PRIMARY KEY ("Ccategoria")
+)
+
+CREATE TABLE public."Libro"
+(
+  "Id" numeric NOT NULL,
+  "Titulo" text,
+  "Subtitulo" text,
+  "Fecha_Publicacion" date,
+  "Descripcion" text,
+  "Un_Editor" text,
+  "Imagen" bytea,
+  "Cautor1" numeric,
+  "Ccategoria1" numeric,
+  CONSTRAINT "Id" PRIMARY KEY ("Id"),
+  CONSTRAINT "Cautor1" FOREIGN KEY ("Cautor1")
+      REFERENCES public."Autor" ("Cautor") MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT "Ccategoria1" FOREIGN KEY ("Ccategoria1")
+      REFERENCES public."Categoria" ("Ccategoria") MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
